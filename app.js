@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var mongoose = require('mongoose')
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/user.routes');
 var postRouter = require("./routes/post.routes");
@@ -41,5 +43,14 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+mongoose
+  .connect('mongodb://127.0.0.1:27017/lesson-crud-with-populate')
+  .then(x => {
+    console.log(`Connected to Mongo database: "${x.connections[0].name}"`);
+  })
+  .catch(err => {
+    console.log(`An error occurred while connecting to the Database: ${err}`);
+  });
 
 module.exports = app;

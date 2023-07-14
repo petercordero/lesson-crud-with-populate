@@ -1,10 +1,16 @@
 const mongoose = require('mongoose');
 
-const User = require('../models/User.model');
+const User = require('./models/User.model');
 
 // ℹ️ Connects to the database
-require("../db");
-
+mongoose
+  .connect('mongodb://127.0.0.1:27017/lesson-crud-with-populate')
+  .then(x => {
+    console.log(`Connected to Mongo database: "${x.connections[0].name}"`);
+  })
+  .catch(err => {
+    console.log(`An error occurred while connecting to the Database: ${err}`);
+  });
 // User.collection.drop();
 
 const fakeUsers = [
