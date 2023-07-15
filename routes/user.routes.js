@@ -29,9 +29,6 @@ router.post("/user-create", (req, res) => {
     .catch((err) => console.log(`Error while creating a new user: ${err}`));
 });
 
-// ****************************************************************************************
-// GET route to display all users from the DB
-// ****************************************************************************************
 
 router.get("/", (req, res) => {
   User.find() // <-- .find() method gives us always an ARRAY back
@@ -51,11 +48,5 @@ router.get("/posts/:userId", (req, res, next) => {
     next(err)
   })
 })
-
-// ****************************************************************************************
-// GET details of a specific user (primarily their posts)
-// ****************************************************************************************
-
-// ... your code here
 
 module.exports = router;
